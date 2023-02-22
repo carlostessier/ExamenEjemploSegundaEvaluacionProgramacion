@@ -10,7 +10,7 @@ Crear las siguientes clases en el paquete madrid.org utilizando Programación Or
 
 - Moneda: Es una clase abstracta con los atributos para el nombre de la moneda, la cantidad y valor.
 - Criptomoneda: Hereda de la clase Moneda. Añade el atributo algoritmoHash para el nombre del algoritmo Hash.
-- PlataformaIntercambio: Contiene un atributo nombre para el nombre de la plataforma y una lista dinámica de Carteras
+- PlataformaIntercambio: Contiene un atributo nombre para el nombre de la plataforma y una array de Carteras de 100 como máximo
 - Cartera: Contiene un atributo usuario para guardar el correo electrónico del dueño de la cartera, un array estático llamado criptomonedas para guardar un máximo de 10 Criptomonedas diferentes y un atributo numCriptomonedas para indicar el número de criptomonedas que se han guardado en el array. El array no puede contener elementos null, tendrá siempre un objeto criptomoneda con el nombre inicializado a ""
 
 ## Segundo ejercicio. 2.5 puntos. 
@@ -27,17 +27,18 @@ public interface OperacionesCartera {
     * (un posición del array donde nombre vale ""
     * En caso de existir añade la cantidad a la que ya existe
     * @param criptoMoneda
-    * @throws Exception si no hay espacio para más criptomonedas
+    * @return true si se ha podido añadir, false en caso contrario
+    *
     * Devuelve una excepción con el mensaje "No hay espacio libre"
     */
-   public void addCriptoMoneda(CriptoMoneda criptoMoneda) throws Exception;
+   public boolean addCriptoMoneda(CriptoMoneda criptoMoneda);
 
    /**
     * Borra una criptomoneda a la cartera, asignando el nombre 
     * de la criptomoneda a "" , si no existe no hace nada
     * @param criptoMoneda
     */
-   public void deleteCriptoMoneda(CriptoMoneda criptoMoneda);
+   public boolean deleteCriptoMoneda(CriptoMoneda criptoMoneda);
 
        /**
         * Devuelve una cantidad de criptomonedas de la cartera
@@ -45,10 +46,10 @@ public interface OperacionesCartera {
         * En ese caso se descontará la cantidad de la cartera
         * @param nombre
         * @param cantidad
-        * @return cantidad de criptomonedas que se han retirado
-        * @throws Exception si no existe la criptomoneda o no hay suficiente cantidad
+        * @return boolean true si se ha podido realizar la operación, false en caso contrario
+        * 
         */
-   public double takeCriptoMoneda(String nombre, double cantidad) throws Exception;
+   public double takeCriptoMoneda(String nombre, double cantidad) ;
 
    /**
     * Devuelve la posición de la criptomoneda en la cartera
@@ -62,7 +63,7 @@ public interface OperacionesCartera {
 
 ````
 
-## Tercer ejercicio. 2.5 puntos. 
+## Tercer ejercicio. 2 puntos. 
 
 La Comunidad de Madrid quiere gestionar las carteras de los usuarios Para ello debe para ello copiar la siguiente interfaz OperacionesPlataforma y implementar todos los métodos en la clase  PlataformaIntercambio                
 
@@ -78,7 +79,7 @@ public interface OperacionesPlataforma {
    * @param index Posición desde donde empieza a buscar
    * @return Cartera del usuario
    */
-public Cartera buscarCarteraRecursiva(String usuario, int index);
+public int buscarCarteraRecursiva(String usuario, int index);
 
 
    /**
@@ -86,7 +87,7 @@ public Cartera buscarCarteraRecursiva(String usuario, int index);
     * o el usuario no tiene espacio libre devuelva falso
     * @param usuario
     * @param crito
-    * @return
+    * @return devuelve el indice donde está la cartera, -1 en caso contrario
     */
    public boolean addMonedaCartera(String usuario, CriptoMoneda cripto);
 
@@ -94,56 +95,24 @@ public Cartera buscarCarteraRecursiva(String usuario, int index);
     * Añade una cartera a la plataforma
     *
     * @param cartera
-    * @throws Exception
+    * @return true si se ha podido añadir, false en caso contrario
     */
-   public void addCartera(Cartera cartera) throws Exception;
+   public boolean addCartera(Cartera cartera);
 
    /**
     * Borra una cartera de la plataforma
     * Si no existe el usuario de la cartera lanzará una excepción
     * @param cartera
-    * @throws Exception si no existe el usuario de la cartera
+    * @return true si se ha podido borrar, false en caso contrario
     */
-   public void deleteCartera(Cartera cartera) throws Exception;
+   public boolean deleteCartera(Cartera cartera) throws Exception;
 
 }
 
 ````
 
 
-## Cuarto ejercicio. 2.5 puntos. 
 
-La Comunidad de Madrid finalmente quiere tener la opción de exportar a una hoja de cálculo toda la información de las carteras, también  desea poder importar una fichero con las carteras. Para ello debe  implementar la clase PlataformaIntercambio la siguiente interfaz:         
-
-````
-package org.madrid;
-
-import java.util.ArrayList;
-
-public interface Ficheros {
-
-   /**
-    * Guarda la cartera en un fichero CSV con el formato
-    * Carlos;Bitcoin;2.5;20000.0
-    * Carlos;Ether;1.0;1500.0
-    * María;Bitcoin;3.5;20000.0
-    * Eva;Luna;1.0;0.0001
-    * @param ficheroCSV
-    */
-   public void guardarCartera(String ficheroCSV);
-
-   /**
-    * Carga una cartera desde un fichero CSV con el formato
-    * Carlos;Bitcoin;2.5;20000.0
-    * Carlos;Ether;1.0;1500.0
-    * María;Bitcoin;3.5;20000.0
-    * Eva;Luna;1.0;0.0001
-    * @param ficheroCSV
-    */
-   public void cargarCartera(String ficheroCSV);
-
-}
-````
 
 
 
