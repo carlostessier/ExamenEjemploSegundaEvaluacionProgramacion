@@ -2,9 +2,7 @@ package org.madrid;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Files;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,8 +17,8 @@ class PlataformaIntercambioTest {
         assertTrue(p.addCartera(c1));
         assertTrue(p.addCartera(c2));
 
-        assertEquals("Carlos", p.getListaCarteras()[0].getUsuario());
-        assertEquals("María", p.getListaCarteras()[1].getUsuario());
+        assertEquals("Carlos", p.getCarteras()[0].getUsuario());
+        assertEquals("María", p.getCarteras()[1].getUsuario());
         assertEquals(2, p.getNumeroCarteras());
     }
 
@@ -39,14 +37,14 @@ class PlataformaIntercambioTest {
         assertTrue(p.addCartera(c2));
         assertTrue(p.addCartera(c3));
         assertEquals(p.getNumeroCarteras(), 3);
-        System.out.println(c1.equals(p.getListaCarteras()[0]));
-        assertEquals(c1,p.getListaCarteras()[0]);
+        System.out.println(c1.equals(p.getCarteras()[0]));
+        assertEquals(c1,p.getCarteras()[0]);
         assertEquals(0, p.buscarCarteraRecursiva("Carlos",0));
         assertEquals(1, p.buscarCarteraRecursiva("María",0));
         assertEquals(2, p.buscarCarteraRecursiva("Lucia",0));
-        assertEquals(p.getListaCarteras()[p.buscarCarteraRecursiva("Carlos",0)], c1);
-        assertEquals(p.getListaCarteras()[p.buscarCarteraRecursiva("María",0)], c2);
-        assertEquals(p.getListaCarteras()[p.buscarCarteraRecursiva("Lucia",0)], c3);
+        assertEquals(p.getCarteras()[p.buscarCarteraRecursiva("Carlos",0)], c1);
+        assertEquals(p.getCarteras()[p.buscarCarteraRecursiva("María",0)], c2);
+        assertEquals(p.getCarteras()[p.buscarCarteraRecursiva("Lucia",0)], c3);
 
 
     }
@@ -71,11 +69,11 @@ class PlataformaIntercambioTest {
         ayusocoin.setCantidad(3.5);
         p.addMonedaCartera("María", ayusocoin);
 
-        assertEquals(2, p.getListaCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getNumCriptomonedas());
-        assertEquals(1, p.getListaCarteras()[p.buscarCarteraRecursiva("María",0)].getNumCriptomonedas());
-        assertEquals(2.5, p.getListaCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getCriptomonedas()[0].getCantidad());
-        assertEquals(3.3, p.getListaCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getCriptomonedas()[1].getCantidad());
-        assertEquals(3.5, p.getListaCarteras()[p.buscarCarteraRecursiva("María",0)].getCriptomonedas()[0].getCantidad());
+        assertEquals(2, p.getCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getNumCriptomonedas());
+        assertEquals(1, p.getCarteras()[p.buscarCarteraRecursiva("María",0)].getNumCriptomonedas());
+        assertEquals(2.5, p.getCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getCriptomonedas()[0].getCantidad());
+        assertEquals(3.3, p.getCarteras()[p.buscarCarteraRecursiva("Carlos",0)].getCriptomonedas()[1].getCantidad());
+        assertEquals(3.5, p.getCarteras()[p.buscarCarteraRecursiva("María",0)].getCriptomonedas()[0].getCantidad());
 
     }
 }

@@ -9,7 +9,7 @@ class CarteraTest {
     void buscarCriptomoneda() {
         CriptoMoneda ayusoCoin = new CriptoMoneda("AyusoCoin", 1, 10000.0,"SHA-256");
 
-        CriptoMoneda luna = new CriptoMoneda("Luna", 1, 0);
+        CriptoMoneda luna = new CriptoMoneda("Luna", 1, 0,"SHA-256");
         Cartera cartera = new Cartera("Carlos");
 
         cartera.addCriptoMoneda(ayusoCoin);
@@ -22,7 +22,7 @@ class CarteraTest {
 
     @org.junit.jupiter.api.Test
     void addCriptoMoneda() {
-        CriptoMoneda bitcoin = new CriptoMoneda("Bitcoin", 1, 10000);
+        CriptoMoneda bitcoin = new CriptoMoneda("Bitcoin", 1, 10000,"SHA-256");
         CriptoMoneda luna = new CriptoMoneda("Luna", 2.5, 0);
         CriptoMoneda bitcoinComprados = new CriptoMoneda("Bitcoin", 5, 10000);
 
